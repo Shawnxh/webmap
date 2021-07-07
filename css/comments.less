@@ -1,0 +1,230 @@
+@import "./public.less";
+
+#comments {
+    display: none;
+    width: 35rem;
+    height: auto;
+    position: fixed;
+    left: 50%;
+    bottom: 11rem;
+    transform: translateX(-50%);
+    z-index: 99999;
+    border-radius: 1rem;
+    background: rgb(255, 255, 255);
+    .publicShadow();
+
+    &::before {
+        content: '';
+        width: 8.5rem;
+        height: 2.7rem;
+        position: absolute;
+        left: 50%;
+        top: -2rem;
+        transform: translateX(-50%);
+        background-image: url(./../../images/badge.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .head {
+        font-size: 1.4rem;
+        height: 5rem;
+        line-height: 5rem;
+        text-align: center;
+        border-bottom: 1px solid #E6E6E6;
+        // background: linear-gradient(-44deg, #EC8D61, #DC4938);
+        // -webkit-background-clip: text;
+        // background-clip: text;
+        // color: transparent;
+        color: #DC4938;
+
+        span {
+            height: 2rem;
+            line-height: 2rem;
+        }
+
+        .close {
+            width: 1.6rem;
+            height: 1.6rem;
+            position: absolute;
+            right: 0.6rem;
+            top: 0.8rem;
+            background: url(./../../images/close.png) no-repeat;
+            background-size: 100% 100%;
+        }
+    }
+
+    .body {
+        height: 27rem;
+        overflow-y: scroll;
+
+        .listbox {
+            width: 96%;
+            height: auto;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+
+            .every {
+                height: auto;
+                min-height: 6rem;
+                border-bottom: 1px solid rgb(230, 230, 230);
+                display: flex;
+                flex-direction: row;
+                position: relative;
+
+                &:last-child {
+                    border: none;
+                }
+
+                .avatar {
+                    margin: 1.5rem 0.5rem;
+
+                    img {
+                        width: 3.5rem;
+                        height: 3.5rem;
+                        border: 1px solid rgba(187, 187, 187, 1);
+                        border-radius: 2rem;
+                    }
+                }
+
+                .mainbox {
+                    margin: 1rem;
+                    width: 25rem;
+                    height: auto;
+
+                    .nickname {
+                        font-size: 1.4rem;
+                        height: 2rem;
+                        color: #999999;
+                    }
+
+                    .content {
+                        font-size: 1.3rem;
+                        margin-top: 0.2rem;
+                        height: auto;
+                        line-height: 2.5rem;
+                        min-height: 5rem;
+                        color: #666666;
+                    }
+                }
+
+                .thumbupbox {
+                    width: 2.5rem;
+                    height: auto;
+                    position: absolute;
+                    right: 0.5rem;
+                    top: 1rem;
+
+                    .finger {
+                        width: 1.5rem;
+                        height: 1.5rem;
+                        margin: 0 auto;
+                        background: url(./../../images/thumbup.png) no-repeat;
+                        background-size: 100% 100%;
+
+                        &.active {
+                            background: url(./../../images/thumbup_selected.png) no-repeat;
+                            background-size: 100% 100%;
+                        }
+                    }
+
+                    .thumbupnumber {
+                        display: flex;
+                        justify-content: center;
+                    }
+                }
+
+                .deletebox {
+                    display: none;
+                    width: 2.5rem;
+                    height: auto;
+                    position: absolute;
+                    right: 0.5rem;
+                    bottom: 1rem;
+
+                    .trashcan {
+                        width: 1.5rem;
+                        height: 1.5rem;
+                        margin: 0 auto;
+                        background: url(./../../images/delete.png) no-repeat;
+                        background-size: 100% 100%;
+                    }
+
+                    .delete {
+                        display: flex;
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer {
+        height: 5.5rem;
+        border-top: 1px solid #E6E6E6;
+        position: relative;
+
+        textarea {
+            height: 3.5rem;
+            line-height: 3.5rem;
+            width: 20rem;
+            // 允许在长单词内换行
+            // word-break: break-all;
+            position: absolute;
+            left: 1.4rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #E6E6E6;
+            border-radius: 20px;
+            // 去除边框
+            border: 1px solid #F6DCA9;
+            // 去除选中状态边框
+            outline: none;
+            // 禁止拖拽伸缩
+            resize: none;
+            padding: 0 1.5rem;
+            font-size: 1.5rem;
+            //字间距 
+            // letter-spacing: 0.1em;
+            // 文字不换行
+            white-space: nowrap;
+
+            &::-webkit-input-placeholder {
+                color: #8F8F8F;
+            }
+        }
+
+        .release {
+            white-space: nowrap;
+            width: 9rem;
+            height: 3.5rem;
+            line-height: 3.5rem;
+            text-align: center;
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #FFFFFF;
+            background: linear-gradient(-44deg, #EC8D61, #DC4938);
+            border-radius: 2rem;
+        }
+    }
+
+    .operation_feedback {
+        display: none;
+        width: auto;
+        height: 3rem;
+        padding: 0 2rem;
+        line-height: 3rem;
+        text-align: center;
+        background-color: rgba(1, 1, 1, .5);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        color: #FFFFFF;
+        border-radius: 2rem;
+    }
+}

@@ -1,0 +1,558 @@
+@import "./public.less";
+
+#clockInLists {
+    display: none;
+    width: 35rem;
+    height: auto;
+    color: #815E05;
+    position: fixed;
+    left: 50%;
+    bottom: 11rem;
+    transform: translateX(-50%);
+    z-index: 99999;
+    border-radius: 1rem;
+    .publicShadow();
+    background-image: url(./../../images/shading.png);
+    background-repeat: no-repeat;
+
+    &::before {
+        content: '';
+        width: 8.5rem;
+        height: 2.7rem;
+        position: absolute;
+        left: 50%;
+        top: -2rem;
+        transform: translateX(-50%);
+        background-image: url(./../../images/badge.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .head {
+        width: 100%;
+        height: 10rem;
+        display: flex;
+        flex-direction: row;
+        position: relative;
+
+        img {
+            width: 12rem;
+            height: 7rem;
+            margin: 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .right {
+
+            .name {
+                margin-top: 1rem;
+                height: 1.7rem;
+                line-height: 1.7rem;
+                font-size: 1.8rem;
+                font-weight: bold;
+                letter-spacing: 2px;
+            }
+
+            .bottom {
+                font-size: 1.2rem;
+                width: auto;
+                height: 1.1rem;
+                line-height: 1.1rem;
+                margin: 1rem;
+                position: relative;
+
+                &::before {
+                    content: '';
+                    width: 1rem;
+                    height: 1.1rem;
+                    position: absolute;
+                    left: -1.2rem;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background-image: url(./../../images/address_icon.png);
+                    background-repeat: no-repeat;
+                    background-size: 100% 100%;
+                }
+            }
+
+            .member {
+                width: fit-content;
+                padding: 0 1rem;
+                height: 2rem;
+                line-height: 2rem;
+                border-radius: 1rem;
+                border: 1px solid #815E05;
+            }
+        }
+
+        .close {
+            width: 1.5rem;
+            height: 1.5rem;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            cursor: pointer;
+            background: url(./../../images/close.png) no-repeat;
+            background-size: 100% 100%;
+        }
+    }
+
+    .main {
+        width: 32rem;
+        height: 55vh;
+        margin: 0 auto;
+        border-top: 1px solid #E6E6E6;
+        overflow: auto;
+
+        .lists {
+
+            display: flex;
+            flex-flow: row wrap;
+
+            .item {
+                width: 100%;
+                border-radius: 0.6rem;
+                .publicShadow();
+                overflow: hidden;
+                margin-top: 1rem;
+                transition: all .4s;
+
+                .cover {
+                    width: 100%;
+                    height: 17rem;
+                    border-radius: 0.75rem 0.75rem 0 0;
+                    overflow-y: hidden;
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        width: 100%;
+                        max-height: 50rem;
+                    }
+                }
+
+                .description {
+                    width: calc(100% - 4rem);
+                    height: 2rem;
+                    line-height: 2rem;
+                    font-size: 1.3rem;
+                    margin: 0.5rem 0;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    text-indent: 0.5rem;
+                }
+
+                .bottom {
+                    height: 2rem;
+                    line-height: 2rem;
+                    font-size: 1.2rem;
+                    display: flex;
+                    flex-direction: row;
+                    white-space: nowrap;
+
+                    .avatar {
+                        margin: 0 0.5rem;
+
+                        img {
+                            width: 2rem;
+                            height: 2rem;
+                            border-radius: 1rem;
+                        }
+                    }
+
+
+                    .heat {
+                        margin-right: 1rem;
+                        margin-left: auto;
+                        margin-top: -2rem;
+
+                        span {
+                            display: block;
+                            height: 1.5rem;
+                        }
+
+                        .img {
+                            width: 1.5rem;
+                            margin: 0 auto;
+                            background-image: url(./../../images/clockIn/thumbup.png);
+                            background-repeat: no-repeat;
+                            background-size: 100% 100%;
+
+                            &.active {
+                                background-image: url(./../../images/clockIn/thumbup_selected.png);
+                                background-repeat: no-repeat;
+                                background-size: 100% 100%;
+                            }
+                        }
+
+                        .num {
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .clockIn_scope_notice {
+        display: none;
+        width: 14rem;
+        height: 14rem;
+        text-align: center;
+        border-radius: 1.5rem;
+        background-color: rgba(1, 1, 1, .5);
+        color: rgba(255, 255, 255, 1);
+        .publicShadow();
+        z-index: 9;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        img {
+            width: 5rem;
+            height: 5rem;
+            margin: 1.5rem auto;
+        }
+
+        p {
+            height: 3.4rem;
+            line-height: 1.7rem;
+            font-size: 1.3rem;
+        }
+    }
+
+    .pullUp_album {
+        display: none;
+        width: 10rem;
+        height: 10rem;
+        border-radius: 1.5rem;
+        .publicShadow();
+        z-index: 9;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-image: url(./../../images/clockIn/loading.gif);
+        background-size: 100% 100%;
+        background-color: #FFFFFF;
+    }
+
+    .clockIn_button {
+        width: 14.5rem;
+        height: 5rem;
+        margin: 0 auto;
+        background-color: rgb(255, 255, 255);
+        background-image: url(./../../images/clockIn/clockin_button.png);
+        background-repeat: no-repeat;
+        background-size: 100% 3rem;
+        background-position: center;
+    }
+
+    .clockIn_button_shelter {
+        display: none;
+        width: 100%;
+        height: 5rem;
+        color: transparent;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 9; // 可不添加
+    }
+}
+
+#clockInDetail {
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 999999;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    .close {
+        width: 2.4rem;
+        height: 2.4rem;
+        position: absolute;
+        right: 0.5rem;
+        top: 0.5rem;
+        background: url(./../../images/closeClockInDetail.png) no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .cover {
+        width: 100%;
+        max-height: 60vh;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .clockInLists_user {
+        display: flex;
+        flex-direction: row;
+        height: 2.4rem;
+        line-height: 2.4rem;
+        position: absolute;
+        left: 0;
+        bottom: 3rem;
+        margin-left: 1rem;
+
+        img {
+            width: 2.4rem;
+            height: 2.4rem;
+            border-radius: 50%;
+        }
+
+        .name {
+            margin-left: 1rem;
+            color: rgb(255, 255, 255);
+        }
+    }
+
+    .heat {
+        position: absolute;
+        right: 0;
+        bottom: 4rem;
+        margin-right: 1rem;
+
+        span {
+            display: block;
+            height: 1.5rem;
+        }
+
+        .img {
+            width: 1.5rem;
+            margin: 0 auto 0.5rem;
+            background-image: url(./../../images/clockIn/thumbup.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+
+            &.active {
+                background-image: url(./../../images/clockIn/thumbup_selected.png);
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+            }
+        }
+
+        .num {
+            text-align: center;
+            color: rgb(255, 255, 255);
+            line-height: 1.5rem;
+        }
+    }
+
+    .clockInLists_cmt {
+        width: calc(100% - 3rem);
+        font-size: 1.3rem;
+        height: 3rem;
+        line-height: 1.5rem;
+        overflow: auto;
+        position: absolute;
+        left: 0;
+        bottom: 6rem;
+        color: rgb(255, 255, 255);
+        margin-left: 1rem;
+
+    }
+}
+
+#clockInFn {
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 999999;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #FFFFFF;
+
+    .downImgContainer {
+        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(43, 43, 43, 8);
+        z-index: 2;
+
+        img {
+            width: 31.5rem;
+            height: 70vh;
+            position: absolute;
+            left: 50%;
+            top: 3rem;
+            transform: translateX(-50%);
+        }
+
+        span {
+            font-size: 1.6rem;
+            font-family: PingFangSC-regular;
+            color: #EB895F;
+            position: absolute;
+            left: 50%;
+            bottom: 15vh;
+            transform: translateX(-50%);
+        }
+
+        .backToShare {
+            width: 10rem;
+            height: 3rem;
+            line-height: 3rem;
+            text-align: center;
+            border-radius: 1.5rem;
+            background-color: #FFF2EC;
+            color: #EB895F;
+            position: absolute;
+            left: 50%;
+            bottom: 7vh;
+            transform: translateX(-50%);
+        }
+
+    }
+
+    .poster {
+        width: 31.5rem;
+        height: 70vh;
+        .publicShadow();
+        border-radius: 1rem;
+        overflow: hidden;
+        margin: 3rem auto;
+
+        .chooseImgContainer {
+            height: 50vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            position: relative;
+
+            .chooseImg {
+                width: 100%;
+                max-height: 70vh;
+            }
+
+            .label {
+                width: 16rem;
+                height: 4rem;
+                line-height: 5rem;
+                padding-left: 1rem;
+                font-size: 1.4rem;
+                color: #815E05;
+                white-space: nowrap;
+                z-index: 1;
+                background-image: url(./../../images/clockIn/label.png);
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                position: absolute;
+                left: 0;
+                top: 2vh;
+            }
+        }
+
+        .bottom {
+            width: 100%;
+            height: 20vh;
+            background-image: url(./../../images/clockIn/poster_bottom.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            position: relative;
+
+            textarea {
+                resize: none;
+                white-space: nowrap;
+                width: 20rem;
+                height: 2.5rem;
+                line-height: 2.5rem;
+                margin: 1.5rem 2rem;
+                overflow-x: auto;
+                font-size: 1.3rem;
+                color: #815E05;
+                background-color: #F18669;
+                outline: none;
+                border-radius: 1rem;
+                padding-left: 1rem;
+
+                &::-webkit-input-placeholder {
+                    color: #FFFFFF;
+                }
+            }
+
+            .user {
+                display: flex;
+                flex-direction: row;
+                margin-left: 2rem;
+
+                img {
+                    width: 2rem;
+                    height: 2rem;
+                    border-radius: 50%;
+                    vertical-align: middle;
+                }
+
+                .name {
+                    color: #815E05;
+                    margin-left: 1rem;
+                    height: 2rem;
+                    line-height: 2rem;
+                }
+            }
+
+            #qr1 {
+                box-sizing: content-box;
+                z-index: 1;
+                width: 60px;
+                height: 60px;
+                position: absolute;
+                right: 1.5rem;
+                bottom: 6vh;
+                border: 3px solid rgba(255, 255, 255, 1);
+            }
+        }
+    }
+
+    .bottom_original {
+        // display: none;
+        font-size: 1.5rem;
+        width: 100%;
+        height: 3rem;
+        position: relative;
+        margin-top: 5vh;
+
+        .back {
+            width: 10rem;
+            height: 3.5rem;
+            line-height: 3.5rem;
+            position: absolute;
+            left: 30%;
+            top: 0;
+            transform: translateX(-50%);
+            border-radius: 0.4rem;
+            background-color: #FFF2EC;
+            color: #EB895F;
+            border: 1px solid #EC8D61;
+            border-radius: 2rem;
+            font-size: 1.4rem;
+            text-align: center;
+
+
+        }
+
+        .save {
+            width: 10rem;
+            height: 3.5rem;
+            line-height: 3.5rem;
+            position: absolute;
+            right: 30%;
+            top: 0;
+            transform: translateX(50%);
+            border-radius: 2rem;
+            background: linear-gradient(-44deg, #EC8D61, #DC4938);
+            color: rgba(255, 255, 255, 1);
+            font-size: 1.4rem;
+            text-align: center;
+            .publicShadow();
+        }
+    }
+}

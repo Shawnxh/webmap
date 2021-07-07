@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>RedCulture</title>
+    <link rel="shortcut icon" type="images/x-icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./css/dist/index.css">
+    <link rel="stylesheet" href="./css/dist/graphic_list.css">
+    <link rel="stylesheet" href="./css/dist/clock_in.css">
+    <link rel="stylesheet" href="./css/dist/comments.css">
+    <!-- mescroll插件引入-->
+    <link rel="stylesheet" href="./vendor/mescroll.min.css">
+    <script src="./vendor/mescroll.min.js"></script>
+    <!-- tencent地图组件 -->
+    <script src="https://map.qq.com/api/gljs?v=1.exp&key=2CHBZ-PO3KF-2JTJH-JQM4K-KWSRS-RFFGQ"></script>
+    <!-- tencent定位组件 -->
+    <script src="https://mapapi.qq.com/web/mapComponents/geoLocation/v/geolocation.min.js"></script>
+    <!-- wechat 启用外部导航api -->
+    <script src="https://res2.wx.qq.com/open/js/jweixin-1.6.0.js "></script>
+    <!-- 二维码插件 -->
+    <script src="./vendor/qrcode.min.js"></script>
+</head>
+
+<body>
+    <div id="mapContainer"></div>
+    <div id="locate_failure">
+        <img src="./images/locate_failure.png" alt="">
+        <p>获取当前定位失败<br>
+            请刷新后再次尝试!
+        </p>
+    </div>
+    <!-- 开屏页 -->
+    <section id="openingPage">
+        <div class="progress">
+            <img src="./images/progressBar.gif" alt="">
+        </div>
+        <div class="bottom">
+            飞图科技技术支持
+        </div>
+    </section>
+
+    <div id="logo"></div>
+    <div id="toast">
+        <img src="./images/gps_fail.png" alt="">
+        <div class="font">获取地理位置失败<br>请检查您的设备，并刷新当前页面</div>
+    </div>
+
+    <!-- 右侧功能栏 -->
+    <div id="graphic">
+    </div>
+    <div id="introduce">
+    </div>
+    <div id="location">
+    </div>
+    <div id="more">
+    </div>
+
+    <!-- 底部 功能扩展栏 -->
+    <section id="buttonContainer">
+        <div class="left"></div>
+        <div class="center">
+            <div class="button">
+                <button class=""></button>
+                <div class="name"></div>
+            </div>
+
+        </div>
+        <div class="right"></div>
+    </section>
+
+    <!-- 社区分类展开 -->
+    <section id="tour_directory">
+        <div>
+            <ul class="nav">
+                <li class="primary_title">
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 全景导览详情信息窗口页面 -->
+    <section id="infoWindow">
+        <div id="infoContainer">
+            <div class="head">
+                <img src="" alt="" onerror="javascript:this.src='./images/clockIn/akali.jpg';">
+                <div class="right">
+                    <div class="name">景点名称</div>
+                    <div class="center">地址：</div>
+                    <div class="pathPlanning">路线规划</div>
+                </div>
+                <div class="close"></div>
+            </div>
+            <div class="bottom">
+                <div class="voiceAssistant">语音助手</div>
+                <div class="vr">VR<a href="" target="_blank">
+                    </a></div>
+                <div class="clockIn">打卡</div>
+            </div>
+            <p class="content">
+            </p>
+        </div>
+        <div id="infoExit">
+            <div class="name">景点名称</div>
+            <a href=""><span>导航</span></a>
+            <span>退出</span>
+        </div>
+    </section>
+
+    <!-- 语音助手 -->
+    <section id="voice">
+        <div class="head">
+            <img src="" alt="" onerror="javascript:this.src='./images/clockIn/akali.jpg';">
+            <div class="right">
+                <div class="name"></div>
+                <div class="center"></div>
+            </div>
+            <div class="close"></div>
+        </div>
+        <div class="voice_directory">
+            <div class="title" file="" data_id="" txt=""></div>
+        </div>
+        <div class="voice_content">
+            <div class="audioBox">
+                <div class="back">
+                    <img src="./images/audio_back.png" alt="">
+                </div>
+                <audio src="" controls></audio>
+            </div>
+            <p class="text">
+            </p>
+        </div>
+
+    </section>
+
+    <!-- 打卡列表 -->
+    <section id="clockInLists">
+        <div class="head">
+            <img src="" alt="" onerror="javascript:this.src='./images/clockIn/akali.jpg';">
+            <div class="right">
+                <div class="name"></div>
+                <div class="bottom"></div>
+            </div>
+            <div class="close"></div>
+        </div>
+        <div class="main" id="mescroll_clockInList">
+            <div class="lists">
+                <div class="item">
+                    <div class="cover">
+                        <img src="" alt="">
+                    </div>
+                    <div class="description"></div>
+                    <div class="bottom">
+                        <div class="avatar">
+                            <img src="" alt="" onerror="javascript:this.src='./images/avatar.png';">
+                        </div>
+                        <div class="name"></div>
+                        <div class="heat">
+                            <span class="img"></span>
+                            <span class="num"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clockIn_scope_notice">
+            <img src="./images/clockIn/scope.png" alt="">
+            <p>无法在该打卡点<br>
+                1km外体验此功能
+            </p>
+        </div>
+        <div class="pullUp_album"></div>
+        <div class="clockIn_button"></div>
+        <div class="clockIn_button_shelter"></div>
+    </section>
+    <!-- 打卡详情 -->
+    <section id="clockInDetail">
+        <div class="close"></div>
+        <img src="" alt="" class="cover">
+        <div class="clockInLists_user">
+            <img src="" alt="">
+            <div class="name"></div>
+        </div>
+        <div class="heat">
+            <span class="img"></span>
+            <span class="num"></span>
+        </div>
+        <div class="clockInLists_cmt"></div>
+    </section>
+    <!-- 打卡功能 -->
+    <section id="clockInFn">
+        <div class="downImgContainer">
+            <img src="" alt="">
+            <span>长按图片保存</span>
+            <div class="backToShare">返回</div>
+        </div>
+        <div class="poster">
+            <div class="chooseImgContainer">
+                <img class="chooseImg" src="" alt="">
+                <div class="label">
+                    VR全景，红色双流
+                </div>
+            </div>
+            <div class="bottom">
+                <textarea name="" id="" maxlength="30" placeholder="请输入打卡文字"></textarea>
+                <div class="user">
+                    <img crossorigin="anonymous" src="" alt="">
+                    <div class="name"></div>
+                </div>
+                <div id="qr1"></div>
+            </div>
+
+        </div>
+
+        <div class="bottom_original">
+            <div class="back">返回</div>
+            <div class="save">发布并保存</div>
+            <!-- <div class="save"><a href="" id="capture" download="capture">保存并发布</a></div> -->
+        </div>
+    </section>
+
+    <!-- 更多 -->
+    <section id="moreUnfold">
+        <div class="button">
+            <button class="cmt_icon"></button>
+            <div class="name">评论</div>
+        </div>
+        <div class="button">
+            <button class="feedback_icon"></button>
+            <div class="name">意见</div>
+        </div>
+        <div class="button">
+            <button class="share_icon"></button>
+            <div class="name">分享</div>
+        </div>
+        <div class="button">
+            <button class="close_icon"></button>
+            <div class="name">关闭</div>
+        </div>
+    </section>
+
+    <!-- 评论页面 -->
+    <section id="comments">
+        <div class="head">
+            <span class="left">【评论数: </span><span class="count"></span><span class="right"></span>】</span>
+            <div class="close"></div>
+        </div>
+        <div class="body" id="mescroll_commentsList">
+            <div class="listbox">
+                <div class="every">
+                    <div class="avatar"><img src="./images/avatar.png" alt=""></div>
+                    <div class="mainbox">
+                        <div class="nickname"></div>
+                        <div class="content"></div>
+                    </div>
+                    <div class="thumbupbox">
+                        <div class="finger"></div>
+                        <div class="thumbupnumber"></div>
+                    </div>
+                    <div class="deletebox">
+                        <div class="trashcan"></div>
+                        <div class="delete">删除</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <textarea placeholder="留下你的精彩评论吧!" name="" id="" cols="30" rows="10"></textarea>
+            <div class="release">发布</div>
+        </div>
+        <div class="operation_feedback"></div>
+    </section>
+
+    <!-- 意见反馈 -->
+    <section id="feedback">
+        <div class="head">
+            <div class="close"></div>
+        </div>
+        <div class="main">
+            <div class="explain">请留下您的宝贵意见，以帮助我们改善社区服务</div>
+            <textarea name="" id="" cols="" rows="" placeholder="请输入您的宝贵意见..."></textarea>
+            <div class="submit">提交</div>
+        </div>
+
+        <div class="success">
+            <img src="./images/submit_success.png" alt="">
+            <div class="notice">提交成功</div>
+            <div class="text">您的意见对我们非常重要，我们将尽快处理！</div>
+        </div>
+    </section>
+
+    <!-- 分享指示页 -->
+    <section id="shareInstructionPage">
+        <div class="top"></div>
+        <div class="okay"></div>
+    </section>
+
+    <!-- 园区介绍 简述-->
+    <section id="sketchcontainer">
+        <div class="close"></div>
+        <div class="contentcontainer">
+            <div class="contentTop">
+                成都市锦江区人民政府沙河街道办事处辖区，由原沙河街道辖区与双桂路街道辖区合并而成，地处成都市东南部，东以锦江区与成华区区界至上沙河铺北街沿线与老成渝路西街沿线交汇处为界，南以净居寺路、老成渝路西街沿线与上沙河铺北街沿线交汇处，沿老成渝路西街至沙河大桥东桥头为界，西以二环路东四段、二环路东五段为界，北以双桂路为界，辖区面积4.66平方公里，常住人口81892人，流动人口34649人。
+            </div>
+            <div class="imgcontainer"><img src="./images/imgSketch.png" alt=""></div>
+            <div class="contentBottom">
+                沙河街道属地名为沙河堡，于宋代得名，沿用至今。
+                宋代开设邮路，按照10里一堡（pu），50里一驿开设中转站。
+                其中从成都东门大桥的锦官驿至龙泉驿之间的50里邮路上，依次开设了四个堡，第一个即命名为“沙河堡”。
+                境内有史可考的地名有关帝庙、放生池、大营门、五福村等。
+                抗日战争期间，因沙河堡地势高、土质粘密，宜于防空，成都防空司令部、
+                中央航空研究所等诸多机关、工厂和有钱人疏散到此，带来了沙河堡的繁华。
+                五福村即因抗战期间疏散至此的五家工商豪门而得名，其中有家王公馆，
+                曾是中共四川地下党省委机关，如今的望江宾馆即建在五福村原址上。
+                上世纪五六十年代开始，不少工厂接二连三在沙河四周建起，成就了整个城东的工业时代。
+                1997年，锦江区区划调整时成立沙河堡街道，2011年调整为沙河街道。
+                2019年底与双桂路街道合并成立新的沙河街道。
+            </div>
+        </div>
+        <div class="shelter"></div>
+    </section>
+
+    <!-- 图文列表 -->
+    <section id="graphicList">
+        <div class="main" id="mescroll_graphicList">
+            <div class="list">
+                <div class="item">
+                    <div class="cover" file="buzaiyouyu">
+                        <img src="" alt="">
+                    </div>
+                    <div class="description"></div>
+                    <div class="time">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="graphicList_back">
+            <img src="./images/graphicList_back.png" alt="">
+            <span>返回</span>
+        </div>
+    </section>
+    <!-- 图文详情 -->
+    <section id="graphicDetail">
+        <video src="" controls></video>
+        <div class="title"></div>
+        <div class="time"></div>
+        <p class="content"></p>
+        <div class="graphicDetail_exit">
+            <img src="./images/graphicList_back.png" alt="">
+            <span>返回</span>
+        </div>
+    </section>
+
+    <!-- 大图预览容器 -->
+    <section id="preview"><img src="" alt=""></section>
+
+    <script src="./vendor/jquery-3.5.1.min.js"></script>
+    <script src="./vendor/html2canvas.min.js"></script>
+    <script src="./js/dist/public.dev.js"></script>
+    <script src="./js/dist/initialization.dev.js"></script>
+    <script src="./js/dist/index.dev.js"></script>
+    <script src="./js/dist/wechat_authorization.dev.js"></script>
+    <script src="./js/dist/audio.dev.js"></script>
+    <script src="./js/dist/preview.dev.js"></script>
+    <script src="./js/dist/graphic.dev.js"></script>
+    <script src="./js/dist/clock_in.dev.js"></script>
+    <script src="./js/dist/comments.dev.js"></script>
+    <script src="./js/dist/feedback.dev.js"></script>
+    <script src="./js/dist/pull.dev.js"></script>
+</body>
+
+</html>

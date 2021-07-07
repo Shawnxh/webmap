@@ -1,0 +1,207 @@
+.publicShadow {
+  box-shadow: 0 0.2rem 0.6rem 0 rgba(0, 0, 0, 0.4);
+}
+* {
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+html,
+body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+#comments {
+  display: none;
+  width: 35rem;
+  height: auto;
+  position: fixed;
+  left: 50%;
+  bottom: 11rem;
+  transform: translateX(-50%);
+  z-index: 99999;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 0.2rem 0.6rem 0 rgba(0, 0, 0, 0.4);
+}
+#comments::before {
+  content: '';
+  width: 8.5rem;
+  height: 2.7rem;
+  position: absolute;
+  left: 50%;
+  top: -2rem;
+  transform: translateX(-50%);
+  background-image: url(../../images/badge.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+#comments .head {
+  font-size: 1.4rem;
+  height: 5rem;
+  line-height: 5rem;
+  text-align: center;
+  border-bottom: 1px solid #E6E6E6;
+  color: #DC4938;
+}
+#comments .head span {
+  height: 2rem;
+  line-height: 2rem;
+}
+#comments .head .close {
+  width: 1.6rem;
+  height: 1.6rem;
+  position: absolute;
+  right: 0.6rem;
+  top: 0.8rem;
+  background: url(../../images/close.png) no-repeat;
+  background-size: 100% 100%;
+}
+#comments .body {
+  height: 27rem;
+  overflow-y: scroll;
+}
+#comments .body .listbox {
+  width: 96%;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+#comments .body .listbox .every {
+  height: auto;
+  min-height: 6rem;
+  border-bottom: 1px solid #e6e6e6;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+#comments .body .listbox .every:last-child {
+  border: none;
+}
+#comments .body .listbox .every .avatar {
+  margin: 1.5rem 0.5rem;
+}
+#comments .body .listbox .every .avatar img {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 1px solid #bbbbbb;
+  border-radius: 2rem;
+}
+#comments .body .listbox .every .mainbox {
+  margin: 1rem;
+  width: 25rem;
+  height: auto;
+}
+#comments .body .listbox .every .mainbox .nickname {
+  font-size: 1.4rem;
+  height: 2rem;
+  color: #999999;
+}
+#comments .body .listbox .every .mainbox .content {
+  font-size: 1.3rem;
+  margin-top: 0.2rem;
+  height: auto;
+  line-height: 2.5rem;
+  min-height: 5rem;
+  color: #666666;
+}
+#comments .body .listbox .every .thumbupbox {
+  width: 2.5rem;
+  height: auto;
+  position: absolute;
+  right: 0.5rem;
+  top: 1rem;
+}
+#comments .body .listbox .every .thumbupbox .finger {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0 auto;
+  background: url(../../images/thumbup.png) no-repeat;
+  background-size: 100% 100%;
+}
+#comments .body .listbox .every .thumbupbox .finger.active {
+  background: url(../../images/thumbup_selected.png) no-repeat;
+  background-size: 100% 100%;
+}
+#comments .body .listbox .every .thumbupbox .thumbupnumber {
+  display: flex;
+  justify-content: center;
+}
+#comments .body .listbox .every .deletebox {
+  display: none;
+  width: 2.5rem;
+  height: auto;
+  position: absolute;
+  right: 0.5rem;
+  bottom: 1rem;
+}
+#comments .body .listbox .every .deletebox .trashcan {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0 auto;
+  background: url(../../images/delete.png) no-repeat;
+  background-size: 100% 100%;
+}
+#comments .body .listbox .every .deletebox .delete {
+  display: flex;
+  justify-content: center;
+}
+#comments .footer {
+  height: 5.5rem;
+  border-top: 1px solid #E6E6E6;
+  position: relative;
+}
+#comments .footer textarea {
+  height: 3.5rem;
+  line-height: 3.5rem;
+  width: 20rem;
+  position: absolute;
+  left: 1.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #E6E6E6;
+  border-radius: 20px;
+  border: 1px solid #F6DCA9;
+  outline: none;
+  resize: none;
+  padding: 0 1.5rem;
+  font-size: 1.5rem;
+  white-space: nowrap;
+}
+#comments .footer textarea::-webkit-input-placeholder {
+  color: #8F8F8F;
+}
+#comments .footer .release {
+  white-space: nowrap;
+  width: 9rem;
+  height: 3.5rem;
+  line-height: 3.5rem;
+  text-align: center;
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #FFFFFF;
+  background: linear-gradient(-44deg, #EC8D61, #DC4938);
+  border-radius: 2rem;
+}
+#comments .operation_feedback {
+  display: none;
+  width: auto;
+  height: 3rem;
+  padding: 0 2rem;
+  line-height: 3rem;
+  text-align: center;
+  background-color: rgba(1, 1, 1, 0.5);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  color: #FFFFFF;
+  border-radius: 2rem;
+}

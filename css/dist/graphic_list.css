@@ -1,0 +1,169 @@
+/*
+ * @Author: your name
+ * @Date: 2021-06-10 10:09:23
+ * @LastEditTime: 2021-07-05 10:14:28
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \htmlc:\Users\Admin\Desktop\map\css\graphic_list.less
+ */
+.publicShadow {
+  box-shadow: 0 0.2rem 0.6rem 0 rgba(0, 0, 0, 0.4);
+}
+* {
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+html,
+body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+#graphicList {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99999;
+  color: #815E05;
+  background-color: #e2dada;
+}
+#graphicList .main {
+  height: 95vh;
+  overflow: auto;
+}
+#graphicList .main .list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+#graphicList .main .list .item {
+  width: 35rem;
+  border-radius: 0.6rem;
+  background-color: #ffffff;
+  box-shadow: 0 0.2rem 0.6rem 0 rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+#graphicList .main .list .item:first-child {
+  margin-top: 2rem;
+}
+#graphicList .main .list .item:last-child {
+  margin-bottom: 1rem;
+}
+#graphicList .main .list .item + .item {
+  margin-top: 1rem;
+}
+#graphicList .main .list .item .cover {
+  width: 35rem;
+  height: 20rem;
+  overflow-y: hidden;
+  display: flex;
+  align-items: center;
+}
+#graphicList .main .list .item .cover img {
+  width: 37rem;
+  max-height: 50rem;
+}
+#graphicList .main .list .item .description {
+  height: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-indent: 0.5rem;
+  margin-top: 1rem;
+}
+#graphicList .main .list .item .time {
+  text-indent: 0.5rem;
+  height: 2rem;
+  line-height: 2rem;
+  margin: 0.5rem 0;
+}
+#graphicList .graphicList_back {
+  width: 6rem;
+  height: 3rem;
+  line-height: 3rem;
+  border-radius: 10rem 0 0 10rem;
+  background-color: #FFFFFF;
+  color: #101010;
+  font-size: 1.4rem;
+  box-shadow: 0 0.2rem 0.6rem 0 rgba(0, 0, 0, 0.4);
+  z-index: 9;
+  position: absolute;
+  right: 0;
+  bottom: 20rem;
+}
+#graphicList .graphicList_back img,
+#graphicList .graphicList_back span {
+  display: inline-block;
+}
+#graphicList .graphicList_back img {
+  width: 2rem;
+  height: 2rem;
+  margin-left: 0.4rem;
+  vertical-align: sub;
+}
+#graphicDetail {
+  display: none;
+  width: 100%;
+  height: 100%;
+  color: #815E05;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99999;
+  background-image: url(../../images/shading.png);
+  background-repeat: no-repeat;
+}
+#graphicDetail video {
+  width: 100%;
+  height: 30vh;
+}
+#graphicDetail .title {
+  width: 33rem;
+  height: 3rem;
+  font-weight: bold;
+  line-height: 3rem;
+  font-size: 2rem;
+  margin: 2rem auto 1rem;
+}
+#graphicDetail .time {
+  width: 33rem;
+  margin: 0 auto;
+}
+#graphicDetail .content {
+  width: 33rem;
+  height: auto;
+  max-height: 55vh;
+  overflow-y: auto;
+  margin: 2rem auto;
+  text-indent: 2rem;
+}
+#graphicDetail .graphicDetail_exit {
+  width: 6rem;
+  height: 3rem;
+  line-height: 3rem;
+  border-radius: 10rem 0 0 10rem;
+  background-color: #FFFFFF;
+  color: #101010;
+  font-size: 1.4rem;
+  box-shadow: 0 0.2rem 0.6rem 0 rgba(0, 0, 0, 0.4);
+  z-index: 9;
+  position: absolute;
+  right: 0;
+  bottom: 20rem;
+}
+#graphicDetail .graphicDetail_exit img,
+#graphicDetail .graphicDetail_exit span {
+  display: inline-block;
+}
+#graphicDetail .graphicDetail_exit img {
+  width: 2rem;
+  height: 2rem;
+  margin-left: 0.4rem;
+  vertical-align: sub;
+}
