@@ -1,7 +1,7 @@
 /*
  * @Author: Shawn
  * @Date: 2021-04-09 09:36:51
- * @LastEditTime: 2021-07-07 10:51:26
+ * @LastEditTime: 2021-07-13 10:38:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \htmlc:\Users\Admin\Desktop\map\js\index.js
@@ -78,6 +78,42 @@ function createMarker() {
                 "height": 40,
                 "anchor": { x: 16, y: 32 },
                 "src": './images/red_culture_marker.png'
+            }),
+            "red_culture_1": new TMap.MarkerStyle({
+                "width": 40,
+                "height": 40,
+                "anchor": { x: 16, y: 32 },
+                "src": './images/red_culture_marker.png'
+            }),
+            "red_culture_2": new TMap.MarkerStyle({
+                "width": 40,
+                "height": 40,
+                "anchor": { x: 16, y: 32 },
+                "src": './images/red_culture_marker.png'
+            }),
+            "red_culture_3": new TMap.MarkerStyle({
+                "width": 40,
+                "height": 40,
+                "anchor": { x: 16, y: 32 },
+                "src": './images/red_culture_marker.png'
+            }),
+            "red_culture_4": new TMap.MarkerStyle({
+                "width": 40,
+                "height": 40,
+                "anchor": { x: 16, y: 32 },
+                "src": './images/red_culture_marker.png'
+            }),
+            "red_culture_5": new TMap.MarkerStyle({
+                "width": 40,
+                "height": 40,
+                "anchor": { x: 16, y: 32 },
+                "src": './images/red_culture_marker.png'
+            }),
+            "red_culture_6": new TMap.MarkerStyle({
+                "width": 40,
+                "height": 40,
+                "anchor": { x: 16, y: 32 },
+                "src": './images/red_culture_marker.png'
             })
         },
         geometries: marker_data,
@@ -134,8 +170,12 @@ function removeControl() {
 
 }
 
+/**
+ * @description: 获取底部分类数据并显示默认marker
+ * @param {*}
+ * @return {*}
+ */
 function getData() {
-    // 获取底部分类种类
     $.ajax({
         type: "get",
         url: baseUrl + '/api/data/classification',
@@ -188,6 +228,7 @@ function getData() {
                     temporary_object.text = item.addressContent;
                     temporary_object.questions = item.questions;
                     temporary_object.styleId = "red_culture";
+                    // temporary_object.styleId = "red_culture_" + $("#buttonContainer .button button").first().attr("data_id");
                     return temporary_object;
                 });
             },
@@ -257,6 +298,7 @@ function bindEvent() {
                         temporary_object.text = item.addressContent;
                         temporary_object.questions = item.questions;
                         temporary_object.styleId = "red_culture";
+                        // temporary_object.styleId = "red_culture_" + $(e.currentTarget).attr("data_id");
                         return temporary_object;
                     });
                     marker.setGeometries(marker_data);
@@ -395,6 +437,7 @@ function assignTourDirectory(array) {
         parent.append(a);
     }
 }
+
 // 展示弹窗+填充弹窗
 function viewDetails(e) {
     // 关闭导览目录页面

@@ -5,14 +5,14 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 /*
  * @Author: Shawn
  * @Date: 2021-04-09 09:36:51
- * @LastEditTime: 2021-07-07 10:07:00
+ * @LastEditTime: 2021-07-08 14:39:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \htmlc:\Users\Admin\Desktop\map\js\initialization.js
  */
 // 接口地址
 var baseUrl = "https://health.sdhuanqiugou.com/vr",
-    // 打卡页面二维码地址
+    // 打卡页面二维码地址  =>  https://cdhistorytovr.cdflytu.com/webmap/map/index.html
 domain = "https://webmapdemo.cdflytu.com/webmap/index.html",
     // 登陆接口param
 encodeUrl = encodeURIComponent(domain),
@@ -22,7 +22,7 @@ tilesPath = "https://webmapdemo.cdflytu.com/webmap"; // 从url处获取token与i
 var token = getQueryVariable('token');
 var userId = getQueryVariable('id');
 sessionStorage.setItem("token", token);
-sessionStorage.setItem("id", userId); // if (getCookie('token') == false || token == null || token == '') {
+sessionStorage.setItem("id", userId); // if (!sessionStorage.getItem('token') || !token) {
 //     window.location.href = baseUrl + '/api/user/login' + '?redirectUrl=' + encodeUrl;
 // }
 // wechat自定义字体调整禁用

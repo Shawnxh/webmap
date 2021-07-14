@@ -430,22 +430,24 @@
             }
 
             .right {
+                width: 18rem;
 
                 .name {
-                    letter-spacing: 2px;
-                    font-size: 2rem;
+                    letter-spacing: 1px;
+                    font-size: 1.8rem;
                     font-weight: bold;
                     height: 3rem;
                     line-height: 3rem;
                     margin-top: 1rem;
+                    white-space: nowrap;
+                    overflow: auto;
                 }
 
                 .center {
                     font-size: 1.2rem;
-                    width: auto;
-                    height: 2.5rem;
+                    // height: 2.5rem;
                     line-height: 1.3rem;
-                    margin: 0.5rem 1.2rem;
+                    margin: 0.5rem 0 0.5rem 1.2rem;
                     position: relative;
 
                     &::before {
@@ -544,8 +546,10 @@
         .content {
             font-size: 1.3rem;
             width: 94%;
-            min-height: 1rem;
             height: auto;
+            min-height: 1rem;
+            max-height: 40vh;
+            overflow: auto;
             margin: 1rem auto;
         }
     }

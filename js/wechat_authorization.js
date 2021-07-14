@@ -1,14 +1,23 @@
 /*
  * @Author: your name
  * @Date: 2021-04-09 09:36:51
- * @LastEditTime: 2021-07-07 10:11:28
+ * @LastEditTime: 2021-07-12 17:34:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \htmlc:\Users\Admin\Desktop\map\js\wechat_authorization.js
  */
-let $appid, $timestamp, $noncestr, $signature;
+let $appid, $timestamp, $noncestr, $signature, $description, $title, $imgUrl;
 
 const protocol_domain_port = 'http://39.102.65.183:8080/open';
+// 链接地址
+// let $linkUrl = "https://cdhistorytovr.cdflytu.com/webmap/map/index.html";
+let $linkUrl = domain;
+// 分享图片 => 线上地址
+$imgUrl = 'https://webmapdemo.cdflytu.com/webmap/images/wechat_share.png';
+
+$description = "【追寻红色记忆 打卡红色点位】成都空港科创集团主题VR全景党课";
+$title = "追寻红色记忆 打卡红色点位";
+
 let url = encodeURIComponent(window.location.href);
 
 $.ajax({
@@ -31,6 +40,8 @@ $.ajax({
             signature: $signature,
             jsApiList: [
                 // 所有要调用的 API 都要加到这个列表中
+                'updateTimelineShareData',
+                'updateAppMessageShareData',
                 'openLocation',
                 'getLocation',
                 'chooseImage'
@@ -43,6 +54,31 @@ $.ajax({
 });
 
 wx.ready(function () {
+    //分享微信朋友圈
+    wx.updateTimelineShareData({
+        imgUrl: $imgUrl,
+        link: $linkUrl,
+        desc: $description,
+        title: $title,
+        success: function () {
+            // alert('分享成功!');
+        }
+    });
+
+    //分享给朋友
+    wx.updateAppMessageShareData({
+        title: $title, // 分享标题
+        desc: $description, // 分享描述
+        link: $linkUrl, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        imgUrl: $imgUrl,
+        type: '', // 分享类型,music、video或link，不填默认为link
+        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+        success: function () {
+            // 用户点击了分享后执行的回调函数
+            // alert('分享成功!');
+        }
+    });
+
     // 导航拉起
     $("#infoWindow #infoExit a span").on("click", () => {
         wx.openLocation({

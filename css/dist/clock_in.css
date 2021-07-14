@@ -266,8 +266,7 @@ body {
   max-height: 60vh;
   position: absolute;
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 20vh;
 }
 #clockInDetail .clockInLists_user {
   display: flex;
@@ -421,7 +420,7 @@ body {
 #clockInFn .poster .bottom textarea {
   resize: none;
   white-space: nowrap;
-  width: 20rem;
+  width: 21rem;
   height: 2.5rem;
   line-height: 2.5rem;
   margin: 1.5rem 2rem;
@@ -430,7 +429,7 @@ body {
   color: #815E05;
   background-color: #F18669;
   outline: none;
-  border-radius: 1rem;
+  border-radius: 3rem;
   padding-left: 1rem;
 }
 #clockInFn .poster .bottom textarea::-webkit-input-placeholder {

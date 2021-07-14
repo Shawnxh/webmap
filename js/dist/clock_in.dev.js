@@ -3,7 +3,7 @@
 /*
  * @Author: your name
  * @Date: 2021-04-19 12:15:35
- * @LastEditTime: 2021-07-07 10:00:36
+ * @LastEditTime: 2021-07-12 15:33:04
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \htmlc:\Users\Admin\Desktop\map\js\clock_in.js
@@ -101,7 +101,9 @@ function clockInListsThunmUpStatus() {
 
 
 $("#clockInDetail .close").on("click", function () {
-  $("#clockInDetail").hide();
+  $("#clockInDetail").hide(); // 退出同时清空图片缩放操作
+
+  $("#clockInDetail .cover").css("transform", "");
 });
 $("#clockInDetail .cover").on('click', function () {
   $("#clockInDetail .close").click();
@@ -173,7 +175,17 @@ $("#clockInFn .bottom_original .back").on('click', function () {
 }); // 保存发布
 
 $("#clockInFn .bottom_original .save").on('click', function () {
-  var contentOriginal = $("#clockInFn .poster .bottom textarea").val();
+  // 让textarea失去焦点 => 软键盘收起
+  $("#clockInFn .poster .bottom textarea").blur();
+  var contentOriginal = $("#clockInFn .poster .bottom textarea").val(); // 清除空格
+
+  var content = contentOriginal.replace(/\s/g, "");
+
+  if (content == null || content == "") {
+    $("#clockInFn .poster .bottom textarea").css("background-color", "transparent");
+  }
+
+  ;
   var image = $("#clockInFn .poster .chooseImgContainer .chooseImg").attr("src");
   $.ajax({
     type: "post",
@@ -189,9 +201,13 @@ $("#clockInFn .bottom_original .save").on('click', function () {
       request.setRequestHeader("token", token);
     },
     success: function success(res) {
-      screenCapture(); // 展示下载指示页
+      setTimeout(function () {
+        screenCapture(); // 展示下载指示页
 
-      $("#clockInFn .downImgContainer").show();
+        $("#clockInFn .downImgContainer").show();
+        $("#clockInFn .poster .bottom textarea").val("");
+        $("#clockInFn .poster .bottom textarea").css("background-color", "#F18669");
+      }, 100);
     },
     error: function error(err) {
       console.log(err);
