@@ -1,7 +1,7 @@
 /*
  * @Author: Shawn
  * @Date: 2021-04-09 09:36:51
- * @LastEditTime: 2021-07-08 14:39:43
+ * @LastEditTime: 2021-07-19 16:00:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \htmlc:\Users\Admin\Desktop\map\js\initialization.js
@@ -10,7 +10,8 @@
 // 接口地址
 var baseUrl = "https://health.sdhuanqiugou.com/vr",
     // 打卡页面二维码地址  =>  https://cdhistorytovr.cdflytu.com/webmap/map/index.html
-    domain = "https://webmapdemo.cdflytu.com/webmap/index.html",
+    // domain = "https://webmapdemo.cdflytu.com/webmap/index.html",
+    domain = "http://127.0.0.1:8080/",
     // 登陆接口param
     encodeUrl = encodeURIComponent(domain),
     // 瓦片地址

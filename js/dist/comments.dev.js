@@ -3,7 +3,7 @@
 /*
  * @Author: your name
  * @Date: 2021-06-24 15:44:57
- * @LastEditTime: 2021-07-07 09:59:01
+ * @LastEditTime: 2021-07-19 16:45:12
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \htmlc:\Users\Admin\Desktop\map\js\comments.js
@@ -36,7 +36,7 @@ function commentsThunmUpStatus() {
         $(ele).removeClass('active');
       }
     } else {
-      if ($(ele).hasClass('active')) {} else {
+      if (!$(ele).hasClass('active')) {
         $(ele).addClass('active');
       }
     }
@@ -71,6 +71,7 @@ function commentsThunmUpStatus() {
   $("#comments .body .listbox .every .thumbupbox .finger").unbind('click'); // 注册点赞click事件
 
   $("#comments .body .listbox .every .thumbupbox .finger").on("click", function (e) {
+    // 取消点赞
     if ($(e.currentTarget).hasClass('active')) {
       $.ajax({
         type: "get",
@@ -78,26 +79,27 @@ function commentsThunmUpStatus() {
         async: false,
         success: function success(res) {
           var num = Number($(e.currentTarget).next().text()) - 1;
-          $(e.currentTarget).removeClass('active').next().text(num);
+          $(e.currentTarget).attr("status", "0").removeClass('active').next().text(num);
         },
         error: function error(err) {
           console.log(err);
         }
       });
-    } else {
-      $.ajax({
-        type: "get",
-        url: baseUrl + "/api/comment.auth/agree?id=" + $(e.currentTarget).attr('cid') + "&uId=" + sessionStorage.getItem('id'),
-        async: false,
-        success: function success(res) {
-          var num = Number($(e.currentTarget).next().text()) + 1;
-          $(e.currentTarget).addClass('active').next().text(num);
-        },
-        error: function error(err) {
-          console.log(err);
-        }
-      });
-    }
+    } // 点赞
+    else {
+        $.ajax({
+          type: "get",
+          url: baseUrl + "/api/comment.auth/agree?id=" + $(e.currentTarget).attr('cid') + "&uId=" + sessionStorage.getItem('id'),
+          async: false,
+          success: function success(res) {
+            var num = Number($(e.currentTarget).next().text()) + 1;
+            $(e.currentTarget).attr("status", "1").addClass('active').next().text(num);
+          },
+          error: function error(err) {
+            console.log(err);
+          }
+        });
+      }
   });
 }
 

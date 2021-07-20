@@ -3,7 +3,7 @@
 /*
  * @Author: your name
  * @Date: 2021-04-19 12:15:35
- * @LastEditTime: 2021-07-12 15:33:04
+ * @LastEditTime: 2021-07-19 16:31:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \htmlc:\Users\Admin\Desktop\map\js\clock_in.js
@@ -47,6 +47,7 @@ function clockInListsThunmUpStatus() {
   $("#clockInLists .main .lists .item .heat .img").unbind('click'); // 注册点赞click事件
 
   $("#clockInLists .main .lists .item .heat .img").on("click", function (e) {
+    // 取消点赞
     if ($(e.currentTarget).hasClass('active')) {
       $.ajax({
         type: "get",
@@ -54,26 +55,27 @@ function clockInListsThunmUpStatus() {
         async: false,
         success: function success(res) {
           var num = Number($(e.currentTarget).next().text()) - 1;
-          $(e.currentTarget).removeClass('active').next().text(num);
+          $(e.currentTarget).removeClass('active').attr("status", "0").next().text(num);
         },
         error: function error(err) {
           console.log(err);
         }
       });
-    } else {
-      $.ajax({
-        type: "get",
-        url: baseUrl + "/api/punch.auth/agree?id=" + $(e.currentTarget).attr('id') + "&uId=" + sessionStorage.getItem('id'),
-        async: false,
-        success: function success(res) {
-          var num = Number($(e.currentTarget).next().text()) + 1;
-          $(e.currentTarget).addClass('active').next().text(num);
-        },
-        error: function error(err) {
-          console.log(err);
-        }
-      });
-    }
+    } //点赞
+    else {
+        $.ajax({
+          type: "get",
+          url: baseUrl + "/api/punch.auth/agree?id=" + $(e.currentTarget).attr('id') + "&uId=" + sessionStorage.getItem('id'),
+          async: false,
+          success: function success(res) {
+            var num = Number($(e.currentTarget).next().text()) + 1;
+            $(e.currentTarget).addClass('active').attr("status", "1").next().text(num);
+          },
+          error: function error(err) {
+            console.log(err);
+          }
+        });
+      }
   });
   $("#clockInLists .main .item .cover").unbind('click'); // 打卡详情
 
@@ -109,6 +111,7 @@ $("#clockInDetail .cover").on('click', function () {
   $("#clockInDetail .close").click();
 });
 $("#clockInDetail .heat .img").on("click", function (e) {
+  // 取消点赞
   if ($(e.currentTarget).hasClass('active')) {
     $.ajax({
       type: "get",
@@ -119,16 +122,9 @@ $("#clockInDetail .heat .img").on("click", function (e) {
         $(e.currentTarget).removeClass('active').next().text(num);
         $("#clockInLists .main .lists .bottom .heat .img").each(function (index, ele) {
           if ($(ele).attr("id") == $("#clockInDetail .heat .img").attr("id")) {
-            if ($("#clockInDetail .heat .img").hasClass("active")) {
-              if (!$("#clockInLists .main .lists .item .heat .img").hasClass("active")) {
-                $("#clockInLists .main .lists .item .heat .img").addClass("active");
-                $("#clockInLists .main .lists .item .heat .num").text(num);
-              }
-            } else {
-              if ($("#clockInLists .main .lists .item .heat .img").hasClass("active")) {
-                $("#clockInLists .main .lists .item .heat .img").removeClass("active");
-                $("#clockInLists .main .lists .item .heat .num").text(num);
-              }
+            if ($(ele).hasClass("active")) {
+              $(ele).removeClass("active");
+              $(ele).attr("status", "0").next().text(num);
             }
           }
         });
@@ -137,35 +133,29 @@ $("#clockInDetail .heat .img").on("click", function (e) {
         console.log(err);
       }
     });
-  } else {
-    $.ajax({
-      type: "get",
-      url: baseUrl + "/api/punch.auth/agree?id=" + $(e.currentTarget).attr('id') + "&uId=" + sessionStorage.getItem('id'),
-      async: false,
-      success: function success(res) {
-        var num = Number($(e.currentTarget).next().text()) + 1;
-        $(e.currentTarget).addClass('active').next().text(num);
-        $("#clockInLists .main .lists .bottom .heat .img").each(function (index, ele) {
-          if ($(ele).attr("id") == $("#clockInDetail .heat .img").attr("id")) {
-            if ($("#clockInDetail .heat .img").hasClass("active")) {
-              if (!$("#clockInLists .main .lists .item .heat .img").hasClass("active")) {
-                $("#clockInLists .main .lists .item .heat .img").addClass("active");
-                $("#clockInLists .main .lists .item .heat .num").text(num);
-              }
-            } else {
-              if ($("#clockInLists .main .lists .item .heat .img").hasClass("active")) {
-                $("#clockInLists .main .lists .item .heat .img").removeClass("active");
-                $("#clockInLists .main .lists .item .heat .num").text(num);
+  } // 点赞
+  else {
+      $.ajax({
+        type: "get",
+        url: baseUrl + "/api/punch.auth/agree?id=" + $(e.currentTarget).attr('id') + "&uId=" + sessionStorage.getItem('id'),
+        async: false,
+        success: function success(res) {
+          var num = Number($(e.currentTarget).next().text()) + 1;
+          $(e.currentTarget).addClass('active').next().text(num);
+          $("#clockInLists .main .lists .bottom .heat .img").each(function (index, ele) {
+            if ($(ele).attr("id") == $("#clockInDetail .heat .img").attr("id")) {
+              if (!$(ele).hasClass("active")) {
+                $(ele).addClass("active");
+                $(ele).attr("status", "1").next().text(num);
               }
             }
-          }
-        });
-      },
-      error: function error(err) {
-        console.log(err);
-      }
-    });
-  }
+          });
+        },
+        error: function error(err) {
+          console.log(err);
+        }
+      });
+    }
 }); // ==================================打卡信息发布页============================================
 // 发布页 => 打卡列表
 
